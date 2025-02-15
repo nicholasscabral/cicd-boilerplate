@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/nicholasscabral/cicd-boilerplate/compare/v1.0.0...v1.0.1) (2025-02-15)
+
+
+### Bug Fixes
+
+* permissions ([58f3993](https://github.com/nicholasscabral/cicd-boilerplate/commit/58f39935e866c228ac776b08f95d0b4971c086fe))
+
 # 1.0.0 (2025-02-15)
 
 
