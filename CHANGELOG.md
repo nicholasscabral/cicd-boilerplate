@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/nicholasscabral/cicd-boilerplate/compare/v1.0.1...v1.0.2) (2025-02-15)
+
+
+### Bug Fixes
+
+* install command ([5a068f1](https://github.com/nicholasscabral/cicd-boilerplate/commit/5a068f1d779a50aa6513c370b22ade6e14df77d6))
+
 ## [1.0.1](https://github.com/nicholasscabral/cicd-boilerplate/compare/v1.0.0...v1.0.1) (2025-02-15)
 
 
