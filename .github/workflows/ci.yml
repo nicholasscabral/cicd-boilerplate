@@ -50,9 +50,23 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build docker image
+        id: build-docker-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           TAG: ${{ steps.generate_image_tag.outputs.sha }}
         run: |
           docker build -t $ECR_REGISTRY/iac-ci-repository:$TAG .
           docker push $ECR_REGISTRY/iac-ci-repository:$TAG
+          IMAGE=$(echo $ECR_REGISTRY/iac-ci-repository:$TAG)
+          echo "image=$IMAGE" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy to App Runner
+        uses: awslabs/amazon-app-runner-deploy@main
+        with:
+          service: iac-ci-repository
+          access-role-arn: arn:aws:iam::665548757588:role/apprunner_role
+          image: ${{ steps.build-docker-image.outputs.image }}
+          region: us-east-1
+          cpu: 1
+          memory: 2
+          port: 3000
