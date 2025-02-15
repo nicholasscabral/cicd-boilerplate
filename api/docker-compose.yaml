@@ -1,0 +1,39 @@
+services:
+  mysql-api:
+    image: mysql:8.0
+    container_name: mysql-api
+    restart: always
+    privileged: true
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: test
+    ports:
+      - '3307:3306'
+    networks:
+      - api-network
+    volumes:
+      - api-db:/var/lib/mysql
+
+  api:
+    container_name: nest-api
+    build:
+      context: .
+    restart: always
+    ports:
+      - '3000:3000'
+    depends_on:
+      - mysql-api
+    # wait-for-it:
+    networks:
+      - api-network
+
+networks:
+  api-network:
+    name: api-network
+    driver: bridge
+
+volumes:
+  api-db:
+    name: api-db
