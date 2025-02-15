@@ -24,6 +24,11 @@ jobs:
           node-version: 20.x
           cache: 'npm'
 
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
       - name: Install Dependencies
         run: npm ci
 
@@ -73,7 +78,7 @@ jobs:
           cpu: 1
           memory: 2
           port: 3000
-          wait-for-service-stability-seconds: 180
+          # wait-for-service-stability-seconds: 180
 
       - name: App runner check
         run: echo "App runner at ${{ steps.deploy.outputs.service-url }}"
